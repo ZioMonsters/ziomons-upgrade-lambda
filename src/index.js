@@ -5,8 +5,8 @@ exports.handler = (event, context, callback) => {
   const { eventId, _id, _atkMod, _defMod, _spdMod } = JSON.parse(event.Records[0].body);
 
   Promise.all([
-      documentClient.upgrade({
-          TableName: `cryptomon-monsters-${process.env.NODE_ENV}`,
+      documentClient.update({
+          TableName: `cryptomon-monsters-staging`,
           Key: {monsterId: _id},
           AttributeUpdates: {
               'attack': {
@@ -24,7 +24,7 @@ exports.handler = (event, context, callback) => {
           }
       }).promise(),
       documentClient.put({
-          TableName: `cryptomon-events-${process.env.NODE_ENV}`,
+          TableName: `cryptomon-events-staging`,
           Item: {
               transactionId: eventId,
               type: 'upgrade',
