@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "name": "cryptomon-upgrade-lambda-${env}",
+  "description": "",
+  "author": " <>",
+  "contributors": [
+    {
+      "name": "",
+      "email": ""
+    }
+  ],
+  "dependencies": {}
+}
